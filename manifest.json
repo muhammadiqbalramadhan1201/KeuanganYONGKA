@@ -1,6 +1,6 @@
 {
-  "name": "Aplikasi Pegawai Ma'had An-Nama'",
-  "short_name": "PegawaiMAN",
+  "name": "Aplikasi KAS YONGKA'",
+  "short_name": "KASyongka",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
