@@ -36,7 +36,7 @@
 <body>
 
   <iframe
-    https://script.google.com/macros/s/AKfycbw7o9E2EJixfoR1_R2BLypw71xaamonwTkL1BzdoRJ12dwfFcAbKQFOiA68P8UQcRoP/exec"
+    src="https://script.google.com/macros/s/AKfycbw7o9E2EJixfoR1_R2BLypw71xaamonwTkL1BzdoRJ12dwfFcAbKQFOiA68P8UQcRoP/exec"
     allow="geolocation">
   </iframe>
 
