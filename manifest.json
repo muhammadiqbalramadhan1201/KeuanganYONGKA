@@ -1,6 +1,6 @@
 {
-  "name": "Aplikasi KAS YONGKA'",
-  "short_name": "KAS Yongka",
+  "name": "KAS YONGKA",
+  "short_name": "KAS YONGKA",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
