@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
   <title>Keuangan YONGKA</title>
 
+  <!-- INFORMASI APLIKASI -->
   <meta property="og:title" content="Keuangan YONGKA">
   <meta property="og:description" content="Keuangan Yayasan Omah Ngaji Khadijah binti Khuwailid">
   <meta property="og:image" content="https://muhammadiqbalramadhan1201.github.io/KeuanganYONGKA/preview.png">
@@ -15,19 +15,24 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://muhammadiqbalramadhan1201.github.io/KeuanganYONGKA/">
 
+  <!-- TWITTER CARD -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Aplikasi KAS YONGKA">
   <meta name="twitter:description" content="Sistem KAS Yayasan Omah Ngaji Khadijah.">
   <meta name="twitter:image" content="https://muhammadiqbalramadhan1201.github.io/KeuanganYONGKA/preview.png">
 
-  <link rel="manifest" href="manifest.json">
+  <!-- PWA -->
+  <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="https://muhammadiqbalramadhan1201.github.io/KeuanganYONGKA/preview.png">
+  <link rel="icon" type="image/png" href="https://muhammadiqbalramadhan1201.github.io/KeuanganYONGKA/preview.png">
 
   <meta name="theme-color" content="#0B3D91">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
 
   <style>
+    /* RESET CSS */
     * {
       margin: 0;
       padding: 0;
@@ -36,8 +41,12 @@
 
     html,
     body {
+      position: fixed;
+      inset: 0;
       width: 100%;
       height: 100%;
+      margin: 0;
+      padding: 0;
       overflow: hidden;
       background: #ffffff;
       font-family:
@@ -56,6 +65,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
+      height: 100dvh;
       background: #ffffff;
       z-index: 2147483647;
       display: flex;
@@ -83,8 +93,7 @@
       border: 4px solid #E5E7EB;
       border-top-color: #0B3D91;
       border-radius: 50%;
-      animation:
-        processingSpin 0.7s linear infinite;
+      animation: processingSpin 0.7s linear infinite;
       margin-bottom: 13px;
     }
 
@@ -104,6 +113,7 @@
       font-size: 16px;
       font-weight: 600;
       letter-spacing: 0.1px;
+      text-align: center;
     }
 
     /* IFRAME APLIKASI */
@@ -111,8 +121,9 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
       border: none;
       display: block;
       z-index: 1;
@@ -123,19 +134,19 @@
     #install-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
-      background-color:
-        rgba(0, 0, 0, 0.7);
+      height: 100dvh;
+      background-color: rgba(0, 0, 0, 0.7);
       z-index: 9998;
       justify-content: center;
       align-items: center;
       opacity: 0;
-      transition:
-        opacity 0.4s ease;
+      transition: opacity 0.4s ease;
       pointer-events: none;
+      padding: 16px;
+      overflow-y: auto;
     }
 
     #install-overlay.show {
@@ -148,47 +159,41 @@
       background: #FFFFFF;
       padding: 30px;
       border-radius: 20px;
-      box-shadow:
-        0 10px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
       text-align: center;
       width: 85%;
       max-width: 400px;
+      max-height: 90%;
+      overflow-y: auto;
       transform: scale(0.8);
-      transition:
-        transform 0.4s ease;
+      transition: transform 0.4s ease;
     }
 
     #install-overlay.show #install-modal {
       transform: scale(1);
     }
 
-    /* ICON INSTALL */
+    /* IKON INSTALL */
     .app-icon-placeholder {
       width: 80px;
       height: 80px;
-      margin:
-        0 auto 20px auto;
-      background-color:
-        #EEEEEE;
+      margin: 0 auto 20px auto;
+      background-color: #EEEEEE;
       border-radius: 18px;
-      background-image:
-        url('https://muhammadiqbalramadhan1201.github.io/KeuanganYONGKA/preview.png');
+      background-image: url("https://muhammadiqbalramadhan1201.github.io/KeuanganYONGKA/preview.png");
       background-size: cover;
       background-position: center;
-      box-shadow:
-        0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     #install-modal h2 {
-      margin:
-        0 0 10px 0;
+      margin: 0 0 10px 0;
       font-size: 22px;
       color: #1c1e21;
     }
 
     #install-modal p {
-      margin:
-        0 0 25px 0;
+      margin: 0 0 25px 0;
       font-size: 16px;
       color: #606770;
       line-height: 1.5;
@@ -202,8 +207,7 @@
     }
 
     #btn-install {
-      background-color:
-        #4285F4;
+      background-color: #4285F4;
       color: #FFFFFF;
       border: none;
       padding: 15px;
@@ -211,11 +215,12 @@
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      width: 100%;
+      -webkit-tap-highlight-color: transparent;
     }
 
     #btn-install:active {
-      background-color:
-        #2b6cb0;
+      background-color: #2b6cb0;
     }
 
     #btn-close {
@@ -226,9 +231,10 @@
       padding: 10px;
       cursor: pointer;
       text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* TAMPILAN HP */
+    /* LAYAR HP */
     @media (max-width: 600px) {
       .processing-spinner {
         width: 36px;
@@ -238,9 +244,44 @@
       #processing-screen .processing-text {
         font-size: 15px;
       }
+
+      #install-modal {
+        padding: 24px;
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+
+    /* LAYAR LANDSCAPE */
+    @media (orientation: landscape) and (max-height: 500px) {
+      #install-modal {
+        padding: 15px;
+      }
+
+      .app-icon-placeholder {
+        width: 54px;
+        height: 54px;
+        margin-bottom: 10px;
+      }
+
+      #install-modal h2 {
+        font-size: 19px;
+      }
+
+      #install-modal p {
+        margin-bottom: 12px;
+        font-size: 14px;
+      }
+
+      .action-buttons {
+        gap: 6px;
+      }
+
+      #btn-install {
+        padding: 10px;
+      }
     }
   </style>
-
 </head>
 
 <body>
@@ -258,6 +299,7 @@
   <iframe
     id="app-frame"
     src="https://script.google.com/macros/s/AKfycbx8dup9Z9TZE_32y-v8wkol7ncCtWelR_hg2-zEA7RqukBz3NFPvI6C0faHwEaQOAd2/exec"
+    title="Aplikasi Keuangan YONGKA"
     allow="camera; microphone">
   </iframe>
 
@@ -267,9 +309,7 @@
 
       <div class="app-icon-placeholder"></div>
 
-      <h2>
-        Install Aplikasi
-      </h2>
+      <h2>Install Aplikasi</h2>
 
       <p>
         Akses aplikasi ini lebih cepat dan mudah langsung dari layar utama HP Anda.
@@ -277,167 +317,257 @@
 
       <div class="action-buttons">
 
-        <button id="btn-install">
+        <button id="btn-install" type="button">
           Tambahkan ke Layar Utama
         </button>
 
-        <button id="btn-close">
+        <button id="btn-close" type="button">
           Nanti Saja
         </button>
 
       </div>
-
     </div>
   </div>
 
   <script>
+    "use strict";
 
-    /* LAYAR MEMPROSES */
+    /* ==========================================
+       REFERENSI ELEMEN
+    ========================================== */
+
     const processingScreen =
-      document.getElementById(
-        'processing-screen'
-      );
+      document.getElementById("processing-screen");
 
     const appFrame =
-      document.getElementById(
-        'app-frame'
-      );
-
-    /*
-     * Begitu iframe selesai dimuat,
-     * layar Memproses langsung disembunyikan.
-     */
-    appFrame.addEventListener(
-      'load',
-      function() {
-
-        processingScreen.classList
-          .add('hide');
-
-      },
-      { once: false }
-    );
-
-    /* SERVICE WORKER */
-    if ('serviceWorker' in navigator) {
-
-      navigator.serviceWorker
-        .register('sw.js')
-        .catch(function(error) {
-
-          console.warn(
-            'Service Worker gagal:',
-            error
-          );
-
-        });
-
-    }
-
-    /* PWA INSTALLATION */
-    let deferredPrompt;
+      document.getElementById("app-frame");
 
     const installOverlay =
-      document.getElementById(
-        'install-overlay'
-      );
+      document.getElementById("install-overlay");
 
     const btnInstall =
-      document.getElementById(
-        'btn-install'
-      );
+      document.getElementById("btn-install");
 
     const btnClose =
-      document.getElementById(
-        'btn-close'
+      document.getElementById("btn-close");
+
+
+    /* ==========================================
+       OTOMATIS MENGIKUTI ROTASI LAYAR HP
+    ========================================== */
+
+    function resizeAppFrame() {
+      /*
+       * Gunakan ukuran viewport terbaru.
+       * Ukuran diperbarui kembali saat HP diputar.
+       */
+      const width =
+        window.innerWidth ||
+        document.documentElement.clientWidth;
+
+      const height =
+        window.innerHeight ||
+        document.documentElement.clientHeight;
+
+      appFrame.style.width = width + "px";
+      appFrame.style.height = height + "px";
+
+      processingScreen.style.width = width + "px";
+      processingScreen.style.height = height + "px";
+
+      installOverlay.style.width = width + "px";
+      installOverlay.style.height = height + "px";
+    }
+
+    /* Jalankan saat halaman pertama dibuka */
+    resizeAppFrame();
+
+    /* Jalankan saat ukuran layar berubah */
+    window.addEventListener(
+      "resize",
+      resizeAppFrame,
+      { passive: true }
+    );
+
+    /* Jalankan saat orientasi HP berubah */
+    window.addEventListener(
+      "orientationchange",
+      function () {
+        resizeAppFrame();
+
+        requestAnimationFrame(function () {
+          resizeAppFrame();
+        });
+
+        setTimeout(resizeAppFrame, 200);
+        setTimeout(resizeAppFrame, 500);
+      },
+      { passive: true }
+    );
+
+    /*
+     * Menangani perubahan viewport pada browser
+     * yang mendukung Visual Viewport API.
+     */
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener(
+        "resize",
+        resizeAppFrame,
+        { passive: true }
       );
+    }
+
+    /* Perbarui ukuran ketika halaman aktif kembali */
+    window.addEventListener(
+      "pageshow",
+      resizeAppFrame,
+      { passive: true }
+    );
+
+
+    /* ==========================================
+       LAYAR MEMPROSES
+    ========================================== */
+
+    appFrame.addEventListener("load", function () {
+      /*
+       * Sembunyikan layar memproses ketika iframe
+       * selesai mengalami peristiwa load.
+       */
+      processingScreen.classList.add("hide");
+    });
+
+
+    /* ==========================================
+       SERVICE WORKER
+    ========================================== */
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker
+          .register("./sw.js")
+          .catch(function (error) {
+            console.warn(
+              "Service Worker gagal didaftarkan:",
+              error
+            );
+          });
+      });
+    }
+
+
+    /* ==========================================
+       PWA INSTALLATION
+    ========================================== */
+
+    let deferredPrompt = null;
 
     const isStandalone =
-      window.matchMedia(
-        '(display-mode: standalone)'
-      ).matches ||
-      window.navigator.standalone;
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.matchMedia("(display-mode: fullscreen)").matches ||
+      window.navigator.standalone === true;
 
+    function showInstallModal() {
+      if (isStandalone) {
+        return;
+      }
+
+      installOverlay.style.display = "flex";
+
+      requestAnimationFrame(function () {
+        installOverlay.classList.add("show");
+      });
+    }
+
+    function hideModal() {
+      installOverlay.classList.remove("show");
+
+      setTimeout(function () {
+        if (!installOverlay.classList.contains("show")) {
+          installOverlay.style.display = "none";
+        }
+      }, 400);
+    }
+
+    /* Tangkap prompt instalasi dari browser */
     if (!isStandalone) {
-
       window.addEventListener(
-        'beforeinstallprompt',
-        function(e) {
+        "beforeinstallprompt",
+        function (event) {
+          event.preventDefault();
 
-          /* Cegah prompt bawaan browser */
-          e.preventDefault();
+          deferredPrompt = event;
 
-          /* Simpan event */
-          deferredPrompt = e;
-
-          /* Tampilkan popup */
-          installOverlay.style.display =
-            'flex';
-
-          setTimeout(
-            function() {
-
-              installOverlay.classList
-                .add('show');
-
-            },
-            10
-          );
-
+          showInstallModal();
         }
       );
 
+      /* Ketika aplikasi berhasil diinstal */
+      window.addEventListener(
+        "appinstalled",
+        function () {
+          deferredPrompt = null;
+          hideModal();
+        }
+      );
     }
 
-    /* TOMBOL INSTALL */
-    btnInstall.onclick =
-      async function() {
 
-        hideModal();
+    /* ==========================================
+       TOMBOL INSTALL
+    ========================================== */
 
+    btnInstall.addEventListener(
+      "click",
+      async function () {
         if (deferredPrompt) {
-
-          deferredPrompt.prompt();
-
-          const result =
-            await deferredPrompt.userChoice;
-
-          console.log(
-            'Respon pengguna:',
-            result.outcome
-          );
+          const promptEvent = deferredPrompt;
 
           deferredPrompt = null;
 
+          hideModal();
+
+          try {
+            await promptEvent.prompt();
+
+            const result = await promptEvent.userChoice;
+
+            console.log(
+              "Respon instalasi:",
+              result.outcome
+            );
+          } catch (error) {
+            console.warn(
+              "Proses instalasi tidak dapat dijalankan:",
+              error
+            );
+          }
+        } else {
+          /*
+           * Browser yang tidak menyediakan prompt otomatis,
+           * seperti Safari pada iPhone, perlu mengikuti
+           * petunjuk Tambahkan ke Layar Utama dari browser.
+           */
+          hideModal();
+
+          console.info(
+            "Gunakan menu browser untuk menambahkan aplikasi ke layar utama."
+          );
         }
+      }
+    );
 
-      };
 
-    /* TOMBOL NANTI SAJA */
-    btnClose.onclick =
-      function() {
+    /* ==========================================
+       TOMBOL NANTI SAJA
+    ========================================== */
 
+    btnClose.addEventListener(
+      "click",
+      function () {
         hideModal();
-
-      };
-
-    /* SEMBUNYIKAN MODAL INSTALL */
-    function hideModal() {
-
-      installOverlay.classList
-        .remove('show');
-
-      setTimeout(
-        function() {
-
-          installOverlay.style.display =
-            'none';
-
-        },
-        400
-      );
-
-    }
+      }
+    );
 
   </script>
 
